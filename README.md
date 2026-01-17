@@ -1,5 +1,5 @@
 # GGEV (AAAI2026)
-[Generalized Geometry Encoding Volume for Real-time Stereo Matching] <br/>
+[Generalized Geometry Encoding Volume for Real-time Stereo Matching](https://arxiv.org/pdf/2512.06793) <br/>
 Jiaxin Liu, Gangwei Xu, Xianqi Wang, Chengliang Zhang, Xin Yang <br/>
 
 ## Zero-shot generalization comparison.
