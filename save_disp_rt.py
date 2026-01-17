@@ -9,7 +9,7 @@ import numpy as np
 import torch
 from tqdm import tqdm
 from pathlib import Path
-from GGEV.core_rt.ggev_stereo import GGEVStereo
+from core_rt.ggev_stereo import GGEVStereo
 from core_rt.utils.utils import InputPadder
 from PIL import Image
 from matplotlib import pyplot as plt

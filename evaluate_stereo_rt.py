@@ -10,7 +10,7 @@ import logging
 import numpy as np
 import torch
 from tqdm import tqdm
-from GGEV.core_rt.ggev_stereo import GGEVStereo, autocast
+from core_rt.ggev_stereo import GGEVStereo, autocast
 import core_rt.stereo_datasets as datasets
 from core_rt.utils.utils import InputPadder
 from PIL import Image

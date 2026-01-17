@@ -18,18 +18,18 @@ The Selective Channel Fusion (SCF) module integrates texture features with depth
 The first row show the initial cost volume features across different disparity hypotheses, which are fragile in unseen scenes and contain many mismatches. In contrast, the second row shows the results after applying our DDCA, which effectively filters out incorrect matches and preserves accurate matching features at their corresponding disparity planes, leading to clearer and more reliable structures.
 
 ## Demos
-Pretrained models can be downloaded from [google drive](https://drive.google.com/drive/folders/1eubNsu03MlhUfTtrbtN7bfAsl39s2ywJ?usp=drive_link)
+Pretrained models can be downloaded from [google drive](https://drive.google.com/drive/folders/17zfezQdyF8NO75IYVUV8b5nCavFokqpv?usp=drive_link)
 
 We assume the downloaded pretrained weights are located under the pretrained_models directory.
 
 You can demo a trained model on pairs of images. To predict stereo for demo-imgs directory, run
 ```Shell
-python demo_imgs.py --restore_ckpt ./pretrained_models/igev_plusplus/sceneflow.pth --left_imgs './demo-imgs/*/im0.png' --right_imgs './demo-imgs/*/im1.png'
+python demo_imgs.py --restore_ckpt ./pretrained_models/ggev/sceneflow.pth --left_imgs './demo-imgs/*/im0.png' --right_imgs './demo-imgs/*/im1.png'
 ```
 You can switch to your own test data directory, or place your own pairs of test images in ./demo-imgs.
 
 ## Environment
-* NVIDIA RTX 3090
+* NVIDIA RTX 4090
 * python 3.8
 
 ### Create a virtual environment and activate it.
@@ -43,16 +43,17 @@ conda activate GGEV
 ```Shell
 pip install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu118
 pip install natten==0.17.1+torch240cu118 -f https://shi-labs.com/natten/wheels/
-pip install tqdm
-pip install scipy
+pip install tqdm scipy einops
 pip install opencv-python==4.9.0.80
 pip install scikit-image==0.21.0
 pip install tensorboard==2.14.0
 pip install matplotlib==3.7.4
 pip install timm==0.5.4
 pip install numpy==1.24.3
-pip install xformers
+pip install -U xformers --index-url https://download.pytorch.org/whl/cu118
 ```
+> To accelerate training and inference, we utilize the efficient large-kernel convolution proposed in [RepLKNet](https://github.com/DingXiaoH/RepLKNet-pytorch#use-our-efficient-large-kernel-convolution-with-pytorch). Please follow this [**guideline**](https://github.com/VITA-Group/SLaK#installation) to install the ``depthwise_conv2d_implicit_gemm`` function.
+
 
 ## Required Data
 
@@ -110,25 +111,19 @@ python save_disp_rt.py
 If you find our works useful in your research, please consider citing our papers:
 
 ```bibtex
-
-@article{xu2024igev++,
-  title={IGEV++: Iterative Multi-range Geometry Encoding Volumes for Stereo Matching},
-  author={Xu, Gangwei and Wang, Xianqi and Zhang, Zhaoxing and Cheng, Junda and Liao, Chunyuan and Yang, Xin},
-  journal={arXiv preprint arXiv:2409.00638},
-  year={2024}
-}
-
-@inproceedings{xu2023iterative,
-  title={Iterative Geometry Encoding Volume for Stereo Matching},
-  author={Xu, Gangwei and Wang, Xianqi and Ding, Xiaohuan and Yang, Xin},
-  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
-  pages={21919--21928},
-  year={2023}
+@misc{liu2025generalizedgeometryencodingvolume,
+      title={Generalized Geometry Encoding Volume for Real-time Stereo Matching}, 
+      author={Jiaxin Liu and Gangwei Xu and Xianqi Wang and Chengliang Zhang and Xin Yang},
+      year={2025},
+      eprint={2512.06793},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2512.06793}, 
 }
 ```
 
 
 # Acknowledgements
 
-This project is based on [RAFT-Stereo](https://github.com/princeton-vl/RAFT-Stereo), [GMStereo](https://github.com/autonomousvision/unimatch), and [CoEx](https://github.com/antabangun/coex). We thank the original authors for their excellent works.
+This project is based on [IGEV-plusplus](https://github.com/gangweix/IGEV-plusplus), and [OverLoCK](https://github.com/LMMMEng/OverLoCK). We thank the original authors for their excellent works.
 

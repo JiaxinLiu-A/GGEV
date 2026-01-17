@@ -121,7 +121,7 @@ class StereoDataset(data.Dataset):
 
 
 class SceneFlowDatasets(StereoDataset):
-    def __init__(self, aug_params=None, root='/data/StereoDatasets/sceneflow/', dstype='frames_finalpass', things_test=False):
+    def __init__(self, aug_params=None, root='/data/datasets/sceneflow/', dstype='frames_finalpass', things_test=False):
         super(SceneFlowDatasets, self).__init__(aug_params)
         self.root = root
         self.dstype = dstype
@@ -187,7 +187,7 @@ class SceneFlowDatasets(StereoDataset):
 
 
 class ETH3D(StereoDataset):
-    def __init__(self, aug_params=None, root='/data/StereoDatasets/eth3d', split='training'):
+    def __init__(self, aug_params=None, root='/data/datasets/eth3d', split='training'):
         super(ETH3D, self).__init__(aug_params, sparse=True)
 
         image1_list = sorted( glob(osp.join(root, f'two_view_{split}/*/im0.png')) )
@@ -199,7 +199,7 @@ class ETH3D(StereoDataset):
             self.disparity_list += [ disp ]
 
 class SintelStereo(StereoDataset):
-    def __init__(self, aug_params=None, root='/data/StereoDatasets/sintelstereo'):
+    def __init__(self, aug_params=None, root='/data/datasets/sintelstereo'):
         super().__init__(aug_params, sparse=True, reader=frame_utils.readDispSintelStereo)
 
         image1_list = sorted( glob(osp.join(root, 'training/*_left/*/frame_*.png')) )
@@ -212,7 +212,7 @@ class SintelStereo(StereoDataset):
             self.disparity_list += [ disp ]
 
 class FallingThings(StereoDataset):
-    def __init__(self, aug_params=None, root='/data/StereoDatasets/fallingthings'):
+    def __init__(self, aug_params=None, root='/data/datasets/fallingthings'):
         super().__init__(aug_params, reader=frame_utils.readDispFallingThings)
         assert os.path.exists(root)
 
@@ -225,7 +225,7 @@ class FallingThings(StereoDataset):
             self.disparity_list += [ disp ]
 
 class TartanAir(StereoDataset):
-    def __init__(self, aug_params=None, root='/data/StereoDatasets/tartanair'):
+    def __init__(self, aug_params=None, root='/data/datasets/tartanair'):
         super().__init__(aug_params, reader=frame_utils.readDispTartanAir)
         assert os.path.exists(root)
 
@@ -238,7 +238,7 @@ class TartanAir(StereoDataset):
             self.disparity_list += [ disp ]
 
 class CREStereoDataset(StereoDataset):
-    def __init__(self, aug_params=None, root='/data/StereoDatasets/crestereo'):
+    def __init__(self, aug_params=None, root='/data/datasets/crestereo'):
         super(CREStereoDataset, self).__init__(aug_params, reader=frame_utils.readDispCREStereo)
         assert os.path.exists(root)
 
@@ -251,7 +251,7 @@ class CREStereoDataset(StereoDataset):
             self.disparity_list += [ disp ]
 
 class CARLA(StereoDataset):
-    def __init__(self, aug_params=None, root='/data/StereoDatasets/carla-highres'):
+    def __init__(self, aug_params=None, root='/data/datasets/carla-highres'):
         super(CARLA, self).__init__(aug_params)
         assert os.path.exists(root)
 
@@ -264,7 +264,7 @@ class CARLA(StereoDataset):
             self.disparity_list += [ disp ]
 
 class InStereo2K(StereoDataset):
-    def __init__(self, aug_params=None, root='/data/StereoDatasets/instereo2k'):
+    def __init__(self, aug_params=None, root='/data/datasets/instereo2k'):
         super(InStereo2K, self).__init__(aug_params, sparse=True, reader=frame_utils.readDispInStereo2K)
         assert os.path.exists(root)
 
@@ -277,18 +277,18 @@ class InStereo2K(StereoDataset):
             self.disparity_list += [ disp ]
 
 class KITTI(StereoDataset):
-    def __init__(self, aug_params=None, root='/data/StereoDatasets/kitti', image_set='training', year=2015):
+    def __init__(self, aug_params=None, root='/data/datasets/kitti', image_set='training', year=2015):
         super(KITTI, self).__init__(aug_params, sparse=True, reader=frame_utils.readDispKITTI)
         assert os.path.exists(root)
 
         if year == 2012:
-            root_12 = '/data/StereoDatasets/kitti/2012'
+            root_12 = '/data/datasets/kitti/2012'
             image1_list = sorted(glob(os.path.join(root_12, image_set, 'colored_0/*_10.png')))
             image2_list = sorted(glob(os.path.join(root_12, image_set, 'colored_1/*_10.png')))
             disp_list = sorted(glob(os.path.join(root_12, 'training', 'disp_occ/*_10.png'))) if image_set == 'training' else [osp.join(root, 'training/disp_occ/000085_10.png')]*len(image1_list)
 
         if year == 2015:
-            root_15 = '/data/StereoDatasets/kitti/2015'
+            root_15 = '/data/datasets/kitti/2015'
             image1_list = sorted(glob(os.path.join(root_15, image_set, 'image_2/*_10.png')))
             image2_list = sorted(glob(os.path.join(root_15, image_set, 'image_3/*_10.png')))
             disp_list = sorted(glob(os.path.join(root_15, 'training', 'disp_occ_0/*_10.png'))) if image_set == 'training' else [osp.join(root, 'training/disp_occ_0/000085_10.png')]*len(image1_list)
@@ -298,7 +298,7 @@ class KITTI(StereoDataset):
             self.disparity_list += [ disp ]
 
 class VKITTI2(StereoDataset):
-    def __init__(self, aug_params=None, root='/data/StereoDatasets/vkitti2'):
+    def __init__(self, aug_params=None, root='/data/StereodatasetsDatasets/vkitti2'):
         super(VKITTI2, self).__init__(aug_params, sparse=True, reader=frame_utils.readDispVKITTI2)
         assert os.path.exists(root)
 
@@ -314,7 +314,7 @@ class VKITTI2(StereoDataset):
 
 
 class Middlebury(StereoDataset):
-    def __init__(self, aug_params=None, root='/data/StereoDatasets/middlebury', split='2014', resolution='F'):
+    def __init__(self, aug_params=None, root='/data/datasets/middlebury', split='2014', resolution='F'):
         super(Middlebury, self).__init__(aug_params, sparse=True, reader=frame_utils.readDispMiddlebury)
         assert os.path.exists(root)
         assert split in ["2005", "2006", "2014", "2021", "MiddEval3"]
