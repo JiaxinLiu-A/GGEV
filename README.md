@@ -1,4 +1,4 @@
-# GGEV
+# GGEV (AAAI2026)
 [Generalized Geometry Encoding Volume for Real-time Stereo Matching] <br/>
 Jiaxin Liu, Gangwei Xu, Xianqi Wang, Chengliang Zhang, Xin Yang <br/>
 
